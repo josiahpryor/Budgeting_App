@@ -5,16 +5,10 @@ from app import models, database
 from app.security import hash_password, verify_password
 from app.auth_utils import create_access_token
 from pydantic import BaseModel
+from app.schemas import UserCreate, Token
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-class UserCreate(BaseModel):
-    email: str
-    password: str
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str = "bearer"
 
 # Dependency to get DB session
 def get_db():

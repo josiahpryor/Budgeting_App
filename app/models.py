@@ -9,8 +9,8 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
 
-    accounts = relationship("Account", back_populates="owner")
-
+    accounts = relationship("Account", back_populates="user")
+    
 class Account(Base):
     __tablename__ = "accounts"
 
