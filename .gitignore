@@ -20,5 +20,5 @@ __pycache__/
 *.db.bak
 *.sqlite3
 
-#commands
-.txt
+# Ignore commands file
+commands.txt
