@@ -1,0 +1,11 @@
+source venv/bin/activate
+uvicorn main:app --reload
+
+Git
+git status
+git add .
+git commit -m "Added expense tracking model and API route"
+git push
+
+git branch
+git push -u origin feature/ai-budgeting
