@@ -6,17 +6,11 @@ from app.security import hash_password, verify_password
 from app.auth_utils import create_access_token
 from pydantic import BaseModel
 from app.schemas import UserCreate, Token
+from app.database import get_db
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
-# Dependency to get DB session
-def get_db():
-    db = database.SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/signup", response_model=Token)
 def signup(user: UserCreate, db: Session = Depends(get_db)):
