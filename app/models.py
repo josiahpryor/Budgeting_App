@@ -13,21 +13,26 @@ class User(Base):
 
 class Account(Base):
     __tablename__ = "accounts"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    balance = Column(Float, default=0.0)
-    user_id = Column(Integer, ForeignKey("users.id"))
 
-    owner = relationship("User", back_populates="accounts")
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    name = Column(String, nullable=False)
+    type = Column(String, nullable=False)
+    balance = Column(Float, default=0.0)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="accounts")
     transactions = relationship("Transaction", back_populates="account")
 
 class Transaction(Base):
     __tablename__ = "transactions"
+
     id = Column(Integer, primary_key=True, index=True)
-    description = Column(String)
-    amount = Column(Float)
-    category = Column(String)
-    date = Column(DateTime, default=datetime.utcnow)
     account_id = Column(Integer, ForeignKey("accounts.id"))
+    amount = Column(Float, nullable=False)
+    date = Column(DateTime, default=datetime.utcnow)
+    description = Column(String)
+    category = Column(String, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     account = relationship("Account", back_populates="transactions")
