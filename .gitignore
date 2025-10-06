@@ -14,3 +14,8 @@ __pycache__/
 
 # Mac
 .DS_Store
+
+# Database files
+*.db
+*.db.bak
+*.sqlite3
