@@ -29,11 +29,14 @@ class Transaction(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     account_id = Column(Integer, ForeignKey("accounts.id"))
+    user_id = Column(Integer, ForeignKey("users.id")) 
+    plaid_transaction_id = Column(String, nullable=True)
     amount = Column(Float, nullable=False)
     type = Column(String, nullable=False)  
     date = Column(DateTime, default=datetime.utcnow)
     description = Column(String)
     category = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
 
     account = relationship("Account", back_populates="transactions")

@@ -21,6 +21,7 @@ class TransactionCreate(BaseModel):
     description: Optional[str] = None
     category: Optional[str] = None
     account_id: int
+    plaid_transaction_id: str | None = None
 
 class TransactionRead(TransactionCreate):
     id: int
@@ -28,6 +29,7 @@ class TransactionRead(TransactionCreate):
 
     class Config:
         orm_mode = True
+    plaid_transaction_id: str | None = None
 
 class AccountCreate(BaseModel):
     name: str
