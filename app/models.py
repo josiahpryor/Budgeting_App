@@ -23,13 +23,14 @@ class Account(Base):
 
     user = relationship("User", back_populates="accounts")
     transactions = relationship("Transaction", back_populates="account", cascade="all, delete-orphan")
-    
+
 class Transaction(Base):
     __tablename__ = "transactions"
 
     id = Column(Integer, primary_key=True, index=True)
     account_id = Column(Integer, ForeignKey("accounts.id"))
     amount = Column(Float, nullable=False)
+    type = Column(String, nullable=False)  
     date = Column(DateTime, default=datetime.utcnow)
     description = Column(String)
     category = Column(String, nullable=True)

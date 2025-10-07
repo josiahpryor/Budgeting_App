@@ -13,8 +13,10 @@ class Token(BaseModel):
 
 
 # ===== ACCOUNT & TRANSACTION SCHEMAS =====
+
 class TransactionCreate(BaseModel):
     amount: float
+    type: str  
     date: Optional[datetime] = None
     description: Optional[str] = None
     category: Optional[str] = None
