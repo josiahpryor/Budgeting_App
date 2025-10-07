@@ -22,8 +22,8 @@ class Account(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User", back_populates="accounts")
-    transactions = relationship("Transaction", back_populates="account")
-
+    transactions = relationship("Transaction", back_populates="account", cascade="all, delete-orphan")
+    
 class Transaction(Base):
     __tablename__ = "transactions"
 
