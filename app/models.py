@@ -16,10 +16,12 @@ class Account(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
+    plaid_account_id = Column(String, nullable=True)
     name = Column(String, nullable=False)
     account_type = Column(String, nullable=False)
     balance = Column(Float, default=0.0)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
 
     user = relationship("User", back_populates="accounts")
     transactions = relationship("Transaction", back_populates="account", cascade="all, delete-orphan")

@@ -13,7 +13,13 @@ def create_account(
     db: Session = Depends(get_db),
     current_user: str = Depends(get_current_user)
 ):
-    new_account = Account(**account.dict(), user_id=int(current_user))
+    new_account = Account(
+    user_id=int(current_user),
+    name=account.name,
+    account_type=account.account_type,
+    balance=account.balance,
+    plaid_account_id=getattr(account, "plaid_account_id", None)
+)   
     db.add(new_account)
     db.commit()
     db.refresh(new_account)

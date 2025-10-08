@@ -35,11 +35,13 @@ class AccountCreate(BaseModel):
     name: str
     account_type: str
     balance: Optional[float] = 0.0
+    plaid_account_id: str | None = None
 
 class AccountRead(AccountCreate):
     id: int
     created_at: datetime
     transactions: List[TransactionRead] = []
+    plaid_account_id: str | None = None
 
     class Config:
         orm_mode = True
